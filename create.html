@@ -7,12 +7,30 @@
 </head>
 <body>
 
+    <div id="loader" class="loading d-none"> </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="column">
+                <label>Product Name</label>
+                <input id="ProductName" type="text">
+                <label>Product Code</label>
+                <input id="ProductCode" type="text">
+                <label>Product Image</label>
+                <input id="ProductImg" type="text">
+                <label>Unit Price</label>
+                <input id="UnitPrice" type="text">
+                <label>Quantity</label>
+                <input id="ProductQty" type="number" min="0" value="1">
+                <label>Total Price</label>
+                <input id="TotalPrice" type="text">
+                <button onclick="CreateData()" type="submit">Submit</button>
+            </div>
+        </div>
+    </div>
 
 
-
-
-
-<script src="JS/axios.min.js"></script>
-<script src="JS/index.js"></script>
+    <script src="JS/axios.min.js"></script>
+    <script src="JS/create.js"></script>
 </body>
 </html>
