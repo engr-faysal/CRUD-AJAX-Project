@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/milligram.css">
+</head>
+<body>
+
+    <div id="loader" class="loading d-none"></div>
+
+    <div class="container">
+        <div class="row">
+            <a href="create.html" class="button button-outline float-left">Create New</a>
+        </div>
+    </div>
+
+<!-- Table -->
+    <div class="container">
+        <div class="row">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product Code</th>
+                        <th>Product Name</th>
+                        <th>Unit Price</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tableItemList">
+                    <!-- Data Load here by AJAX -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <script src="JS/index.js"></script>
+    <script src="JS/axios.min.js"></script>
+
+</body>
+</html>
