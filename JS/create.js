@@ -30,4 +30,3 @@ async function CreateData(){
         alert("Something went wrong");
     }
 }
-

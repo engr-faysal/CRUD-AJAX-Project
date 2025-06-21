@@ -29,8 +29,8 @@ async function getList(){
     }
 }
 // Delete Item from table list and refresh the page.
-async function deleteItem(_id){
-    let URL = `http://164.68.107.70:6060/api/v1/DeleteProduct/${_id}`
+async function deleteItem(id){
+    let URL = `http://164.68.107.70:6060/api/v1/DeleteProduct/${id}`
     let response = await axios.get(URL);
 
     if(response.status === 200){
@@ -40,8 +40,8 @@ async function deleteItem(_id){
 }
 
 // Navigate the update page when button clicked
-async function updateItem(_id){
-    window.location=`update.html?id=${_id}}`
+async function updateItem(id){
+    window.location=`update.html?id=${id}`
 }
 
 window.onload = getList;
