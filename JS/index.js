@@ -15,7 +15,7 @@ async function getList(){
                     <td>${item['ProductCode']}</td>
                     <td>${item['ProductName']}</td>
                     <td>${item['UnitPrice']}</td>
-                    <td>${item['ProductQty']}</td>
+                    <td>${item['Qty']}</td>
                     <td>${item['TotalPrice']}</td>
                     <td><button onclick="updateItem('${item['_id']}')">Update</button></td>
                     <td><button onclick="deleteItem('${item['_id']}')">Delete</button></td>
