@@ -1,41 +1,52 @@
 
 async function getList(){
-    document.getElementById('loader').classList.remove('d-none');
-    let URL = "http://164.68.107.70:6060/api/v1/ReadProduct"
-    let response = await axios.get(URL);
+    try {
+        document.getElementById('loader').classList.remove('d-none');
+        let URL = "https://69ef9097112e1b968e24c28c.mockapi.io/CRUD/V1/ServiceCRUD"
+        let response = await axios.get(URL);
 
-    if(response.status === 200){
-        let list=response.data['data'];
-        let tableItemList = document.getElementById('tableItemList')
+        document.getElementById('loader').classList.add('d-none');
 
-        list.map(item => {
-            tableItemList.innerHTML +=
-                `
-                <tr>
-                    <td>${item['ProductCode']}</td>
-                    <td>${item['ProductName']}</td>
-                    <td>${item['UnitPrice']}</td>
-                    <td>${item['Qty']}</td>
-                    <td>${item['TotalPrice']}</td>
-                    <td><button onclick="updateItem('${item['_id']}')">Update</button></td>
-                    <td><button onclick="deleteItem('${item['_id']}')">Delete</button></td>
-                </tr>
-                `
-        })
-    }
+        if(response.status === 200){
+            let list = response.data;
+            let tableItemList = document.getElementById('tableItemList')
+            tableItemList.innerHTML = ""; // Clear previous data
 
-    else {
-        alert('Something went wrong!');
+            list.map(item => {
+                tableItemList.innerHTML +=
+                    `
+                    <tr>
+                        <td>${item['ProductName']}</td>
+                        <td>${item['UnitPrice']}</td>
+                        <td>${item['Stock']}</td>
+                        <td>${item['BrandName']}</td>
+                        <td>${item['Category']}</td>
+                        <td><button onclick="updateItem('${item['id']}')">Update</button></td>
+                        <td><button onclick="deleteItem('${item['id']}')">Delete</button></td>
+                    </tr>
+                    `
+            })
+        }
+    } catch(error) {
+        document.getElementById('loader').classList.add('d-none');
+        console.error("Error fetching data:", error);
+        alert("Error loading data: " + (error.message || "Something went wrong!"));
     }
 }
+
 // Delete Item from table list and refresh the page.
 async function deleteItem(id){
-    let URL = `http://164.68.107.70:6060/api/v1/DeleteProduct/${id}`
-    let response = await axios.get(URL);
+    try {
+        let URL = `https://69ef9097112e1b968e24c28c.mockapi.io/CRUD/V1/ServiceCRUD/${id}`
+        let response = await axios.delete(URL);
 
-    if(response.status === 200){
-        document.getElementById('tableItemList').innerHTML = ""
-        await getList();
+        if(response.status === 200){
+            document.getElementById('tableItemList').innerHTML = ""
+            await getList();
+        }
+    } catch(error) {
+        console.error("Error deleting item:", error);
+        alert("Error deleting item: " + (error.message || "Something went wrong!"));
     }
 }
 

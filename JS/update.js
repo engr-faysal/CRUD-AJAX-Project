@@ -8,7 +8,7 @@ async function fillExistingData() {
     console.log(id);
 
     // start for filling Data
-    let URL = `http://164.68.107.70:6060/api/v1/ReadProductByID/${id}`
+    let URL = `https://dummyjson.com/products/${id}`
     document.getElementById('loader').classList.remove('d-none');
     let response = await axios.get(URL);
     document.getElementById('loader').classList.add('d-none');
@@ -21,11 +21,10 @@ async function fillExistingData() {
 
         document.getElementById('ProductID').value = items['_id'];
         document.getElementById('ProductName').value = items['ProductName'];
-        document.getElementById('ProductCode').value = items['ProductCode'];
-        document.getElementById('ProductImg').value = items['Img'];
         document.getElementById('UnitPrice').value = items['UnitPrice'];
-        document.getElementById('ProductQty').value = items['Qty'];
-        document.getElementById('TotalPrice').value = items['TotalPrice'];
+        document.getElementById('Stock').value = items['Stock'];
+        document.getElementById('BrandName').value = items['BrandName'];
+        document.getElementById('Category').value = items['Category'];
     }
 
 }
@@ -33,24 +32,22 @@ async function fillExistingData() {
 async function UpdateData() {
     let ProductID = document.getElementById('ProductID').value;
     let ProductName = document.getElementById('ProductName').value;
-    let ProductCode = document.getElementById('ProductCode').value;
-    let ProductImg = document.getElementById('ProductImg').value;
     let UnitPrice = document.getElementById('UnitPrice').value
-    let ProductQty = document.getElementById('ProductQty').value;
-    let TotalPrice = document.getElementById('TotalPrice').value;
+    let Stock = document.getElementById('Stock').value;
+    let BrandName = document.getElementById('BrandName').value;
+    let Category = document.getElementById('Category').value;
 
-    let URL = `http://164.68.107.70:6060/api/v1/UpdateProduct/${ProductID}`
+    let URL = `https://dummyjson.com/products/${ProductID}`
 
     document.getElementById('loader').classList.remove('d-none')
 
     let response = await axios.post(URL,
         {
             ProductName: ProductName,
-            ProductCode:ProductCode,
-            Img:ProductImg,
             UnitPrice:UnitPrice,
-            Qty:ProductQty,
-            TotalPrice:TotalPrice
+            Stock:Stock,
+            BrandName:BrandName,
+            Category:Category
         }
     );
 
