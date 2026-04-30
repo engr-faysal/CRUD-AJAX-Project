@@ -18,7 +18,9 @@ async function fillExistingData() {
 
         if (response.status === 200) {
             const item = response.data; // MockAPI returns the item directly
-            const itemId = item.id || item._id || ''; // Fallback in case API uses _id instead
+            // Codex note: The update page needs the product id before it can save changes.
+            // Your MockAPI sends that id as ServiceID, so we use ServiceID first and keep id/_id as backups.
+            const itemId = item.ServiceID || item.id || item._id || '';
 
             if (!itemId) {
                 alert('Item data loaded, but the product id is missing in the response.');

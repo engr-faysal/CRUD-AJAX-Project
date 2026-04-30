@@ -15,7 +15,9 @@ async function getList(){
             tableItemList.innerHTML = ""; // Clear previous data - Added: Prevents duplicate data
 
             list.map(item => {
-                const itemId = item['id'] || item['_id'] || ''; // Use id from API, fallback to _id if needed
+                // Codex note: Your MockAPI data uses ServiceID as the product id, so we read ServiceID first.
+                // If another API later sends id or _id, this line can still work because those are backups.
+                const itemId = item['ServiceID'] || item['id'] || item['_id'] || '';
                 tableItemList.innerHTML +=
                     `
                     <tr>
