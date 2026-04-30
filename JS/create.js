@@ -34,7 +34,7 @@ async function CreateData(){
         // Changed: Now accepts any success code (200, 201, 204) instead of just 200
         if(response.status >= 200 && response.status < 300){
             alert("Data created successfully!");
-            window.location = "index.html";
+            window.location.href = "./index.html";
         }
     } catch(error) { // Added: Catches any errors that occur during the process
         // Hide loader and log error
