@@ -15,6 +15,7 @@ async function getList(){
             tableItemList.innerHTML = ""; // Clear previous data - Added: Prevents duplicate data
 
             list.map(item => {
+                const itemId = item['id'] || item['_id'] || ''; // Use id from API, fallback to _id if needed
                 tableItemList.innerHTML +=
                     `
                     <tr>
@@ -23,8 +24,8 @@ async function getList(){
                         <td>${item['Stock']}</td>
                         <td>${item['BrandName']}</td>
                         <td>${item['Category']}</td>
-                        <td><button onclick="updateItem('${item['id']}')">Update</button></td> <!-- Changed: 'id' instead of '_id' -->
-                        <td><button onclick="deleteItem('${item['id']}')">Delete</button></td> <!-- Changed: 'id' instead of '_id' -->
+                        <td><button onclick="updateItem('${encodeURIComponent(itemId)}')">Update</button></td>
+                        <td><button onclick="deleteItem('${encodeURIComponent(itemId)}')">Delete</button></td>
                     </tr>
                     `
             })
@@ -53,9 +54,14 @@ async function deleteItem(id){
     }
 }
 
-// Navigate the update page when button clicked
-async function updateItem(id){
-    window.location=`update.html?id=${id}`
+// Navigate to the update page when the update button is clicked
+function updateItem(id){
+    if (!id) {
+        alert('Unable to update: product id is missing.');
+        return;
+    }
+    // Use window.location.href so the browser always navigates to the update page
+    window.location.href = `update.html?id=${id}`;
 }
 
 window.onload = getList;
